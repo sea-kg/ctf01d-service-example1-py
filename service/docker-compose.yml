@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  ctf01d-service-example1-py:
+    build: .
+    read_only: true
+    restart: always
+    environment:
+      - SOME=some
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "1024M"
+    ports:
+      - "4001:4001"
+    volumes:
+      - "./flags:/service/app/flags"
+    networks:
+      - ctf01d-service-example1-network
+
+networks:
+  ctf01d-service-example1-network:
+    driver: bridge
